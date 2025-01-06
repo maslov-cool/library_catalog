@@ -354,12 +354,12 @@ class MyWidget1(QMainWindow):
         # Заполняем таблицу элементами
         for i in range(len(A)):
             btn = QPushButton(A[i][0])
-            btn.clicked.connect(lambda checked: self.act1(btn.text()))
+            btn.clicked.connect(lambda checked: self.act1())
 
             self.table.setCellWidget(i, 0, btn)
 
-    def act1(self, text):
-        el = [i for i in self.data if i[0] == text]
+    def act1(self):
+        el = [i for i in self.data if i[0] == self.sender().text()]
         self.widget = MyWidget2(el[0][0], el[0][1], el[0][2], el[0][3])
         self.widget.show()
 
@@ -381,7 +381,7 @@ class MyWidget2(QMainWindow):
             self.pixmap = QPixmap('2.jpg')
         elif title == 'Ревизор':
             self.pixmap = QPixmap('3.jpg')
-        else:
+        elif title == 'Тарас Бульба':
             self.pixmap = QPixmap('4.jpg')
         self.label.setPixmap(self.pixmap)
 
@@ -396,3 +396,4 @@ if __name__ == '__main__':
     ex.show()
     sys.excepthook = except_hook
     sys.exit(app.exec())
+
